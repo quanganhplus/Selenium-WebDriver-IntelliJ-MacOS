@@ -30,19 +30,23 @@ public class Topic_02_Template {
 
         driver.manage().window().maximize();
 
-        driver.get("https://www.facebook.com/");
+        // Mở fb lên
+     driver.get("https://www.facebook.com/");
     }
 
     @Test
     public void TC_01() {
+        //Selenium locator (By class)
 
+        //ID
+        driver.findElement(By.id("email")).sendKeys("quanganh.plus@gmail.com");
+        sleepInSecond(3);
+
+        //Name
+        driver.findElement(By.name("pass")).sendKeys("123456");
+        sleepInSecond(3);
     }
 
-
-    @Test
-    public void TC_02() {
-
-    }
 
 
     @AfterClass
@@ -52,8 +56,8 @@ public class Topic_02_Template {
 
     public void sleepInSecond(long second){
         try{
-            thread.sleep(second * 1000);
-        } catch (interruptedException e) {
+            Thread.sleep(second * 1000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
