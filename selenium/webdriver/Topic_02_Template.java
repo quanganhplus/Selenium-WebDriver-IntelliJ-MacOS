@@ -30,8 +30,8 @@ public class Topic_02_Template {
 
         driver.manage().window().maximize();
 
-        // Mở fb lên
-     driver.get("https://www.facebook.com/");
+        // Mở trang tạo account techpanda lên
+        driver.get("http://live.techpanda.org/index.php/customer/account/create/");
     }
 
     @Test
@@ -39,14 +39,55 @@ public class Topic_02_Template {
         //Selenium locator (By class)
 
         //ID
-        driver.findElement(By.id("email")).sendKeys("quanganh.plus@gmail.com");
-        sleepInSecond(3);
+        driver.findElement(By.id("firstname")).sendKeys("quang anh");
+        sleepInSecond(1);
 
         //Name
-        driver.findElement(By.name("pass")).sendKeys("123456");
-        sleepInSecond(3);
-    }
+        driver.findElement(By.name("lastname")).sendKeys("trinh");
+        sleepInSecond(1);
 
+        //Class - kiểm tra hiển thị
+        driver.findElement(By.className("customer-name-middlename")).isDisplayed();
+        driver.findElement(By.className("name-middlename")).isDisplayed();
+
+        //TagName - kiểm tra xem có bao nhiêu thẻ input
+        int inputNumber = driver.findElements(By.tagName("input")).size();
+        System.out.println(inputNumber);
+
+        //LinkText - click chuyển đến link trang SEARCH TERMS
+        driver.findElement(By.linkText("SEARCH TERMS")).click();
+        sleepInSecond(3);
+
+        //Partial LinkText
+        driver.findElement(By.partialLinkText("ADVANCED")).click();
+        sleepInSecond(3);
+
+        //Css
+        driver.findElement(By.cssSelector("input[id='name']")).sendKeys("iPhone");
+        sleepInSecond(1);
+        //clear sendKeys
+        driver.findElement(By.cssSelector("input[name='name']")).clear();
+
+        driver.findElement(By.cssSelector("input[name='name']")).sendKeys("Fold3");
+        sleepInSecond(1);
+        driver.findElement(By.cssSelector("input[name='name']")).clear();
+
+        driver.findElement(By.cssSelector("#name")).sendKeys("Xiaomi");
+        sleepInSecond(1);
+
+        //Xpath
+        driver.findElement(By.xpath("//input[@id='description']")).sendKeys("iPhone 13 Pro Max");
+        sleepInSecond(1);
+        driver.findElement(By.xpath("//input[@id='description']")).clear();
+
+        driver.findElement(By.xpath("//input[@name='description']")).sendKeys("Apple Watch 7");
+        sleepInSecond(1);
+        driver.findElement(By.xpath("//input[@name='description']")).clear();
+
+        driver.findElement(By.xpath("//label[text()='Description']/following-sibling::div/input")).sendKeys("AirPod Pro");
+        sleepInSecond(1);
+
+    }
 
 
     @AfterClass
